@@ -17,6 +17,13 @@ RUN chmod +x /home/runner/tools/run.sh
 
 EXPOSE 9000
 
-USER runner
+# We need to support Openshift's random userid's
+# Openshift leaves the group as root. Exploit this to ensure we can always write to them
+# Ensure we are in the the passwd file
+RUN chmod g+w /etc/passwd
+RUN chgrp -Rf root /home/runner && chmod -Rf g+w /home/runner
+ENV RUNNER_USER runner
+
+USER runner:root
 
 ENTRYPOINT ["/home/runner/tools/run.sh"]

@@ -6,7 +6,7 @@ set -euo pipefail
 
 IFS=$'\n\t'
 
-RUNNER_HOME_DIR="/home/runner/app/"
+RUNNER_HOME_DIR="/home/runner/app"
 
 function configure_permissions_for_runner() {
     # Ensure that assigned uid has entry in /etc/passwd.
@@ -21,4 +21,4 @@ function configure_permissions_for_runner() {
 
 configure_permissions_for_runner
 
-java "-J-XX:+ExitOnOutOfMemoryError" -jar "${RUNNER_HOME_DIR}/app.jar" "$@"
+java "-XX:+ExitOnOutOfMemoryError" -jar "${RUNNER_HOME_DIR}/app.jar" "$@"
