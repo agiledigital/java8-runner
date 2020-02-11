@@ -19,15 +19,6 @@ function configure_permissions_for_runner() {
     fi
 }
 
-function configure_timezone() {
-    if [ ! -z "$TZ" ]; then
-        cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
-        echo "${TZ}" >  /etc/timezone && \
-        echo "Container timezone set to: $TZ"
-    fi
-}
-
 configure_permissions_for_runner
-configure_timezone
 
 java "-J-XX:+ExitOnOutOfMemoryError" -jar "${RUNNER_HOME_DIR}/app.jar" "$@"
