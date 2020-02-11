@@ -19,6 +19,11 @@ function configure_permissions_for_runner() {
     fi
 }
 
-configure_permissions_for_runner
+function run_application() {
+    pushd "${RUNNER_HOME_DIR}"
+    java "-XX:+ExitOnOutOfMemoryError" -jar "./app.jar" "$@"
+    popd
+}
 
-java "-XX:+ExitOnOutOfMemoryError" -jar "${RUNNER_HOME_DIR}/app.jar" "$@"
+configure_permissions_for_runner
+run_application "$@"
