@@ -1,7 +1,7 @@
 #
 # Java 8 Runner Image
 # Docker image with tools and scripts installed to support the running of Java 1.8 jar
-# Expects build artifacts mounted at /home/runner/artifacts
+# Expects build artifact mounted at /home/runner/app/app.jar
 #
 
 FROM adoptopenjdk/openjdk8:alpine
